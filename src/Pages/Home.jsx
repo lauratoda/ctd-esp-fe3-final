@@ -7,9 +7,14 @@ const Home = () => {
     const {state} = useDentistStates()
 
   return (
-    <div>
+
+    <main  className="">
+      <h1>Home</h1>
+      <div className='card-grid'>
         {state.dentists.map(dentist => (<Card dentist={dentist} key={dentist.id}/>))}
     </div>
+    </main>
+
   )
   
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useDentistStates } from '../Context/Context'
+import doctorImg from "/images/doctor.jpg?url";
 
 const Card = ({dentist}) => {
 
@@ -10,14 +11,18 @@ const Card = ({dentist}) => {
 
   }
 
-
-  return (
-    <div>
-      <Link to= {'/dentist/' + dentist.id}>
-        <h3>Nombre: {dentist.name}</h3>
-        <h3>Nombre de Usuario: {dentist.username}</h3>
-      </Link>
-      <button onClick={addFav}>Favorito</button>
+  return (    
+    <div className="card-container">
+      <div className="card">
+        <Link to= {'/dentist/' + dentist.id}>
+          <div className="divImgDoctor">
+            <img className="imgDoctor" src={doctorImg}  alt="imagen de un doctor"/>
+          </div>
+          <h3>Nombre: {dentist.name}</h3>
+          <h3>Nombre de Usuario: {dentist.username}</h3>
+        </Link>
+        <button onClick={addFav} className="favButton">Favorito</button>
+      </div>      
     </div>
   )
 }

@@ -7,9 +7,13 @@ const Favs = () => {
 const {state} = useDentistStates()
 
   return (
-    <div>
-      {state.favs.map(fav => <Card dentist={fav} key={fav.id}/>)}
-    </div>
+    <>
+      <h1>Dentists Favs</h1>
+      <div className="card-grid">
+        {state.favs.map(fav => <Card dentist={fav} key={fav.id}/>)}
+      </div>
+    </>
+
   )
 }
 
