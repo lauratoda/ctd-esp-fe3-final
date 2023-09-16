@@ -1,15 +1,34 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useDentistStates } from '../Context/Context'
+import '../index.css'
+import logo from "/images/1.png?url";
+
 
 const Navbar = () => {
+
+  const { state, dispatch } = useDentistStates();
+
+  const toggleTheme = () => {
+    dispatch({ type: 'SWITCH_THEME' });
+  };
+
+
   return (
-    <div>
-        <Link to='/'>Home</Link>
-        <Link to='/favs'>Favs</Link>
-        <Link to='/contact'>Contact</Link>
-              {/* Deberan implementar ademas la logica para cambiar de Theme con el button */}
-      <button >Change theme</button>
-    </div>
+    <nav className="navbar">
+      <div className='nav1'>  
+      <img className='logo' src={logo} alt='logo' />    
+        <Link className="link" to='/'>Home</Link>
+        <Link className="link" to='/favs'>Favs</Link>
+        <Link className="link" to='/contact'>Contact</Link>
+      </div>
+      <div>
+        <button onClick={toggleTheme}>
+          {state.theme ? 'Dark mode ' : 'Ligth mode'}
+        </button>
+      </div>
+
+    </nav>
   )
 }
 

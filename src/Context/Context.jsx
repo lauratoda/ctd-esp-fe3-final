@@ -10,12 +10,16 @@ const reducer = (state, action) =>{
         case 'GET_DENTIST':
             return {...state, dentist: action.payload}     
         case 'ADD_FAV':
-            return {...state, favs: [...state.favs, action.payload]} 
+            if (!state.favs.some(fav => fav.id === action.payload.id)) {
+                return { ...state, favs: [...state.favs, action.payload] };
+              } else {
+                return state; // No hagas cambios si el dentista ya está en favoritos
+              }
         case 'SWITCH_THEME':
             return{...state, theme: !state.theme}     
 
         default:
-            throw new Error()       
+            throw new Error("Accion desconocida")       
     }
 }
 
@@ -26,7 +30,7 @@ const initialState = {
     dentists: [],
     dentist: {},
     favs: initialFavState,
-    theme: true
+    theme: true,
 }
 
 const Context = ({children}) =>{
@@ -43,9 +47,6 @@ const Context = ({children}) =>{
     useEffect(() => {
         localStorage.setItem('favs', JSON.stringify(state.favs))
     },[state.favs])
-
-
-
 
     return(        
         <DentistStates.Provider value={{dispatch, state}}>

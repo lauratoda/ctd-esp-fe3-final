@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useDentistStates } from '../Context/Context'
 
 const Dentist = () => {
@@ -21,12 +21,17 @@ const Dentist = () => {
     }, [])    
 
   return (
-    <div>
-      <h3>{name}</h3>
-      <h3>{phone}</h3>
-      <h3>{email}</h3>
-      <h3>{website}</h3>
- 
+    <div className="dentist-detail">
+      <h1>Detail Dentist id </h1>
+
+
+        <div className="card-detail">
+              <h3>Nombre: {name}</h3>
+              <h3>Teléfono: {phone}</h3>
+              <h3>Email: {email}</h3>
+              <h3>Sitio Web:{website}</h3>
+        </div>
+
     </div>
   )
 }

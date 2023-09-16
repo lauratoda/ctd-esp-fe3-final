@@ -6,6 +6,7 @@ import doctorImg from "/images/doctor.jpg?url";
 const Card = ({dentist}) => {
 
   const {dispatch} = useDentistStates()
+  
   const addFav = () => {
     dispatch ({type: 'ADD_FAV', payload: dentist})
 
@@ -18,8 +19,8 @@ const Card = ({dentist}) => {
           <div className="divImgDoctor">
             <img className="imgDoctor" src={doctorImg}  alt="imagen de un doctor"/>
           </div>
-          <h3>Nombre: {dentist.name}</h3>
-          <h3>Nombre de Usuario: {dentist.username}</h3>
+          <h3>{dentist.name}</h3>
+          <h3>{dentist.username}</h3>
         </Link>
         <button onClick={addFav} className="favButton">Favorito</button>
       </div>      
