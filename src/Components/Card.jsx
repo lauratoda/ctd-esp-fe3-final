@@ -3,27 +3,34 @@ import { Link } from 'react-router-dom'
 import { useDentistStates } from '../Context/Context'
 import doctorImg from "/images/doctor.jpg?url";
 
-const Card = ({dentist}) => {
+const Card = ({ dentist }) => {
 
-  const {dispatch} = useDentistStates()
-  
-  const addFav = () => {
-    dispatch ({type: 'ADD_FAV', payload: dentist})
+  const { state, dispatch } = useDentistStates()
 
-  }
+  const isFavorite = state.favs.some(fav => fav.id === dentist.id);
 
-  return (    
+  const toggleFavorite = () => {
+    if (isFavorite) {
+      dispatch({ type: 'REMOVE_FAV', payload: dentist });
+    } else {
+      dispatch({ type: 'ADD_FAV', payload: dentist });
+    }
+  };
+
+  return (
     <div className="card-container">
       <div className="card">
-        <Link to= {'/dentist/' + dentist.id}>
+        <Link to={'/dentist/' + dentist.id}>
           <div className="divImgDoctor">
-            <img className="imgDoctor" src={doctorImg}  alt="imagen de un doctor"/>
+            <img className="imgDoctor" src={doctorImg} alt="imagen de un doctor" />
           </div>
           <h3>{dentist.name}</h3>
           <h3>{dentist.username}</h3>
         </Link>
-        <button onClick={addFav} className="favButton">Favorito</button>
-      </div>      
+        <button onClick={toggleFavorite} style={{ marginBottom: '22px', width: '80%' }} >
+          {isFavorite ? 'REMOVE FAV' : 'ADD FAV'}
+        </button>
+      </div>
     </div>
   )
 }

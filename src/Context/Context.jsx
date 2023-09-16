@@ -3,23 +3,26 @@ import axios from 'axios'
 
 const DentistStates = createContext()
 
-const reducer = (state, action) =>{
-    switch (action.type){
-        case 'GET_DENTISTS': 
-            return {...state, dentists: action.payload}
+const reducer = (state, action) => {
+    switch (action.type) {
+        case 'GET_DENTISTS':
+            return { ...state, dentists: action.payload }
         case 'GET_DENTIST':
-            return {...state, dentist: action.payload}     
+            return { ...state, dentist: action.payload }
         case 'ADD_FAV':
             if (!state.favs.some(fav => fav.id === action.payload.id)) {
                 return { ...state, favs: [...state.favs, action.payload] };
-              } else {
-                return state; // No hagas cambios si el dentista ya está en favoritos
-              }
+            } else {
+                return state;
+            }
+        case 'REMOVE_FAV':
+            const updatedFavs = state.favs.filter(fav => fav.id !== action.payload.id);
+            localStorage.setItem('favs', JSON.stringify(updatedFavs)); // Actualiza el localStorage
+            return { ...state, favs: updatedFavs };
         case 'SWITCH_THEME':
-            return{...state, theme: !state.theme}     
-
+            return { ...state, theme: !state.theme }
         default:
-            throw new Error("Accion desconocida")       
+            throw new Error("Accion desconocida")
     }
 }
 
@@ -33,23 +36,23 @@ const initialState = {
     theme: true,
 }
 
-const Context = ({children}) =>{
+const Context = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState)
 
     const url = 'https://jsonplaceholder.typicode.com/users'
-    
-    useEffect(()=> {
+
+    useEffect(() => {
         axios(url)
-        .then(res => dispatch ({type:'GET_DENTISTS', payload: res.data}))    
-        .catch(err=>console.log(err))
-    },[])
+            .then(res => dispatch({ type: 'GET_DENTISTS', payload: res.data }))
+            .catch(err => console.log(err))
+    }, [])
 
     useEffect(() => {
         localStorage.setItem('favs', JSON.stringify(state.favs))
-    },[state.favs])
+    }, [state.favs])
 
-    return(        
-        <DentistStates.Provider value={{dispatch, state}}>
+    return (
+        <DentistStates.Provider value={{ dispatch, state }}>
             {children}
         </DentistStates.Provider>
     )
