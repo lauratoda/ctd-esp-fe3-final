@@ -4,11 +4,12 @@ import facebook from "/images/ico-facebook.png?url";
 import ig from "/images/ico-instagram.png?url";
 import tiktok from "/images/ico-tiktok.png?url";
 import wtspp from "/images/ico-whatsapp.png?url";
+import styles from './Footer.module.scss'
 
 const Footer = () => {
   return (
     <footer>
-      <div className='footer_div'>
+      <div className={styles.footer_div}>
         <p>Powered by</p>
         <img src={logoDh} alt='DH-logo' />
       </div>

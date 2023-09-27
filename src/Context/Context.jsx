@@ -10,15 +10,14 @@ const reducer = (state, action) => {
         case 'GET_DENTIST':
             return { ...state, dentist: action.payload }
         case 'ADD_FAV':
-            if (!state.favs.some(fav => fav.id === action.payload.id)) {
-                return { ...state, favs: [...state.favs, action.payload] };
-            } else {
-                return state;
-            }
+            return { ...state, favs: [...state.favs, action.payload] }
         case 'REMOVE_FAV':
-            const updatedFavs = state.favs.filter(fav => fav.id !== action.payload.id);
-            localStorage.setItem('favs', JSON.stringify(updatedFavs)); // Actualiza el localStorage
-            return { ...state, favs: updatedFavs };
+            /* const updatedFavs = state.favs.filter(fav => fav.id !== action.payload.id);
+             localStorage.setItem('favs', JSON.stringify(updatedFavs)); // Actualiza el localStorage*/
+            // return { ...state, favs: updatedFavs };
+            return { ...state, favs: state.favs.filter(fav => fav.id !== action.payload.id) };
+        case 'REMOVE_ALL_FAVS':
+            return { ...state, favs: [] }; // Elimina todos los favoritos del estado
         case 'SWITCH_THEME':
             return { ...state, theme: !state.theme }
         default:
@@ -50,6 +49,7 @@ const Context = ({ children }) => {
     useEffect(() => {
         localStorage.setItem('favs', JSON.stringify(state.favs))
     }, [state.favs])
+
 
     return (
         <DentistStates.Provider value={{ dispatch, state }}>

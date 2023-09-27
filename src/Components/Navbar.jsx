@@ -1,8 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useDentistStates } from '../Context/Context'
-import '../index.css'
+
 import logo from "/images/1.png?url";
+import styles from './Navbar.module.scss'
 
 
 const Navbar = () => {
@@ -15,16 +16,16 @@ const Navbar = () => {
 
 
   return (
-    <nav className="navbar">
-      <div className='nav1'>  
-      <img className='logo' src={logo} alt='logo' />    
-        <Link className="link" to='/'>Home</Link>
-        <Link className="link" to='/favs'>Favs</Link>
-        <Link className="link" to='/contact'>Contact</Link>
+    <nav>
+      <div className={styles.nav1}>  
+      <img className={styles.logo} src={logo} alt='logo' />    
+        <Link className={styles.link} to='/'>Home</Link>
+        <Link className={styles.link} to='/favs'>Favs</Link>
+        <Link className={styles.link} to='/contact'>Contact</Link>
       </div>
       <div>
-        <button onClick={toggleTheme}>
-          {state.theme ? 'Dark mode ' : 'Ligth mode'}
+        <button className= {styles.navButton} onClick={toggleTheme}>
+          {state.theme ? 'Dark ' : 'Ligth'}
         </button>
       </div>
 
@@ -34,4 +35,3 @@ const Navbar = () => {
 
 export default Navbar
 
-/*onClick={handleChangeTheme} style={{background: theme.background, color:theme.font}}*/
