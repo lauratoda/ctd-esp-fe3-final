@@ -19,8 +19,6 @@ const Footer = () => {
         <img className="icon" src={tiktok} alt="tiktok" />
         <img className="icon" src={wtspp} alt="wtspp" />
       </div>
-        
-
     </footer>
   )
 }

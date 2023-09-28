@@ -5,17 +5,17 @@ import { useEffect } from 'react'
 
 const Home = () => {
 
-    const { state } = useDentistStates()
+  const { state } = useDentistStates()
 
   return (
-    <main  className="">
+    <main className="">
       <h1>Home</h1>
 
       <div className='card-grid'>
-        {state.dentists.map(dentist => (<Card dentist={dentist} key={dentist.id}/>))}
-    </div>
+        {state.dentists.map(dentist => (<Card dentist={dentist} key={dentist.id} />))}
+      </div>
     </main>
-  )  
+  )
 }
 
 export default Home

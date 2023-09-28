@@ -17,14 +17,14 @@ const Navbar = () => {
 
   return (
     <nav>
-      <div className={styles.nav1}>  
-      <img className={styles.logo} src={logo} alt='logo' />    
+      <div>
+        <img className={styles.logo} src={logo} alt='logo' />
         <Link className={styles.link} to='/'>Home</Link>
         <Link className={styles.link} to='/favs'>Favs</Link>
         <Link className={styles.link} to='/contact'>Contact</Link>
       </div>
       <div>
-        <button className= {styles.navButton} onClick={toggleTheme}>
+        <button className={styles.navButton} onClick={toggleTheme}>
           {state.theme ? 'Dark ' : 'Ligth'}
         </button>
       </div>

@@ -17,18 +17,17 @@ function App() {
   return (
     <div className="App">
 
-        <Navbar />
-        <div className={bodyClass}>
+      <Navbar />
+      <div className={bodyClass}>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/dentist/:id' element={<Dentist />} />
           <Route path='/favs' element={<Favs />} />
           <Route path='/contact' element={<Contact />} />
-
         </Routes>
-        </div>
-        <Footer />
-        <ToastContainer />
+      </div>
+      <Footer />
+      <ToastContainer />
 
     </div>
   )

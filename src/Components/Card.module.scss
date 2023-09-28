@@ -8,7 +8,8 @@
         padding: 0.5rem;
         border: 0.5px solid rgb(136, 136, 136);
         border-radius: 5px;
-        margin-bottom: 1rem; /* Añadimos margen inferior para separar las tarjetas */
+        margin-bottom: 1rem;
+        /* Añadimos margen inferior para separar las tarjetas */
 
         .divImgDoctor {
             width: auto;
@@ -22,6 +23,7 @@
     }
 }
 
-.aCard{
-    color: var(--text-color-light);;
+.aCard {
+    color: var(--text-color-light);
+    ;
 }

@@ -21,7 +21,7 @@ const Favs = () => {
 
 
   return (
-    <div>
+    <div className={styles.favContainer}>
       <h1>Favs</h1>
       <div className="card-grid">
         {state.favs.length === 0 ? (
@@ -31,13 +31,12 @@ const Favs = () => {
         )}
       </div>
       <div className={styles.favButtonContainer}>
-      {state.favs.length > 0 && (
-        <button className={styles.favButton} onClick={removeAllFavorites}>
-          Eliminar todos los favoritos
-        </button>
-      )}
+        {state.favs.length > 0 && (
+          <button className={styles.favButton} onClick={removeAllFavorites}>
+            Eliminar todos los favoritos
+          </button>
+        )}
       </div>
-
     </div>
   )
 }
